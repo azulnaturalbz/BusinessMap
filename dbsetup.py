@@ -10,7 +10,7 @@ try:
         sql = """CREATE TABLE IF NOT EXISTS business_map.business_list(
         id int NOT NULL AUTO_INCREMENT,
         latitude FLOAT(10,6),
-        longitude FLOAR(10,6),
+        longitude FLOAT(10,6),
         date DATETIME,
         name_of_business VARCHAR(50),
         category VARCHAR(100),

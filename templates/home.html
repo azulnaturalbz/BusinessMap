@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Business Listings</title>
 </head>
 <body>
-
+<h1>Business Listing</h1>
+<form action="/add" method="post">
+    <input type="text" name="userinput">]
+    <input type="submit" value="Submit">
+</form>
+{% for userinput in data %}
+<p>{{ userinput }}</p>
+{% endfor %}
 </body>
 </html>

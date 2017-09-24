@@ -1,19 +1,20 @@
-from dbhelper import DBHepler
+from dbhelper import DBHelper
 from flask import Flask
 from flask import render_template
 from flask import request
 
 app = Flask(__name__)
-DB = DBHepler
+DB = DBHelper()
+
 
 @app.route('/')
 def home():
     try:
-       data = DB.get_all_inputs()
+        data = DB.get_all_inputs()
     except Exception as e:
         print(e)
         data = None
-    render_template("home.html", data=data)
+    return render_template("home.html", data=data)
 
 
 @app.route('/add', methods=['POST'])
@@ -25,6 +26,7 @@ def add():
         print(e)
     return home()
 
+
 @app.route('/clear')
 def clear():
     try:
@@ -35,4 +37,4 @@ def clear():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

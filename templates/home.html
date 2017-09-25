@@ -36,14 +36,21 @@
               position: location,
               map: map
           });
+              document.getElementById('latitude').value = location.lat();
+              document.getElementById('longitude').value = location.lng();
           }
+
       }
     </script>
 </head>
     <body onload="initialize()">
         <h1>Business Listing</h1>
-        <h2>A detailed map layout of all businesses within the belize city area</h2>
-        <div id="map-canvas" style="width: 80%;height: 500px;"></div>
+        <div class="row">
+            <div class="col-md-8">
+                <h2>A detailed map layout of all businesses within the belize city area</h2>
+        <div id="map-canvas" style="height: 500px;"></div>
+            </div>
+        <div class="col-md-4">
         <div id="newbzecityform">
             <h3>Submit a new business</h3>
             <form action="/submitbusiness" method="post">
@@ -73,6 +80,8 @@
 
             </form>
              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
         </div>
 
             <form action="/add" method="post">

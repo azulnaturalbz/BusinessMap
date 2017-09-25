@@ -19,6 +19,13 @@ try:
         PRIMARY KEY (id)
         )"""
         cursor.execute(sql);
+        sql = """CREATE TABLE IF NOT EXISTS business_map.business_description(
+                id int NOT NULL AUTO_INCREMENT,
+                description VARCHAR(1000),
+                update_at TIMESTAMP ,
+                PRIMARY KEY (id)
+                )"""
+        cursor.execute(sql);
         connection.commit()
 finally:
     connection.close()

@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h2>A detailed map layout of all businesses within the belize city area</h2>
-        <div id="map-canvas" style="height: 500px;"></div>
+        <div id="map-canvas" style="height: 600px;"></div>
             </div>
         <div class="col-md-4">
         <div id="newbzecityform">
@@ -62,8 +62,28 @@
                 </select>
                 </div>
                 <div class="form-group">
+                <label for="date">Name:</label>
+                <input type="text" name="bizname" class="form-control">
+                </div>
+                 <div class="form-group">
+                <label for="date">Address:</label>
+                <input type="text" name="bizaddr" class="form-control">
+                 </div>
+                <div class="form-group">
+                <label for="date">Tel:</label>
+                <input type="tel" name="usrtel" class="form-control">
+                </div>
+                <div class="form-group">
+                <label for="date">Email:</label>
+                <input type="email" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                <label for="date">URL:</label>
+                <input type="url" name="homepage"class="form-control">
+                </div>
+                <div class="form-group">
                 <label for="date">Date:</label>
-                <input type="date" name="date" id="date"class="form-control">
+                <input type="date" name="date" id="date" class="form-control">
                 </div>
                 <div class="form-group">
                 <label for="latitude">Latitude:</label>
@@ -77,9 +97,9 @@
                 <label for="description">Description:</label>
                 <textarea name="description" id="description" cols="30" rows="10" placeholder="Short of description of the nature of business" class="form-control"></textarea>
                 </div>
-
+                <input type="submit" value="Submit" class="btn btn-primary">
             </form>
-             <button type="submit" class="btn btn-primary">Submit</button>
+
             </div>
         </div>
         </div>
@@ -99,23 +119,3 @@
 </html>
 
 
-{#
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Business Listings</title>
-</head>
-<body>
-<h1>Business Listing</h1>
-<form action="/add" method="post">
-    <input type="text" name="userinput">
-    <input type="submit" value="Submit">
-</form>
-{% for userinput in data %}
-<p>{{ userinput }}</p>
-{% endfor %}
-
-<a href="/clear">clear</a>
-</body>
-</html>#}

@@ -2,7 +2,7 @@ from dbhelper import DBHelper
 from flask import Flask
 from flask import render_template
 from flask import request
-
+import json
 app = Flask(__name__)
 DB = DBHelper()
 
@@ -11,10 +11,12 @@ DB = DBHelper()
 def home():
     try:
         data = DB.get_all_inputs()
+        businesses = DB.get_all_business()
+        businesses = json.dumps(businesses)
     except Exception as e:
         print(e)
         data = None
-    return render_template("home.html", data=data)
+    return render_template("home.html", data=data, businesses=businesses)
 
 
 @app.route('/add', methods=['POST'])

@@ -2,6 +2,7 @@ import pymysql
 import dbconfig
 import datetime
 
+
 class DBHelper:
 
     def connect(self, database="business_map"):

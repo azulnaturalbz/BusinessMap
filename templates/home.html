@@ -5,7 +5,7 @@
     <title>Business Listings</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvZBV9bHn_jfgq-38odAebUgiKDaNlUHg&callback=initMap"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvZBV9bHn_jfgq-38odAebUgiKDaNlUHg&callbackz"></script>
     <script type="text/javascript">
 
         var map;
@@ -24,6 +24,26 @@
         function (event) {
             placeMarker(event.latLng)
         });
+        placeBusiness({{businesses | safe}});
+      }
+
+
+      function placeBusiness(businesses) {
+            for (i = 0; i < businesses.length ; i++){
+                business = new google.maps.Marker({
+                    position: new google.maps.LatLng(
+                        businesses[i].latitude,
+                        businesses[i].longitude
+                    ),
+                    map: map,
+                    title:  businesses[i].bizname + "\n"+ businesses[i].bizaddr + "\n" +
+                            businesses[i].date + "\n"+ businesses[i].category + "\n" + businesses[i].description,
+
+
+                    }
+                );
+
+            }
       }
 
 
@@ -53,12 +73,16 @@
         <div class="col-md-4">
         <div id="newbzecityform">
             <h3>Submit a new business</h3>
+        {% if error_message %}
+            <div class="alert alert-danger"><p>{{ error_message }}</p></div>
+        {% endif %}
             <form action="/submitbusiness" method="post">
                 <div class="form-group">
                 <label for="category">Category:</label>
                 <select name="category" id="category" class="form-control">
-                    <option value="retail">Shops</option>
-                    <option value="restuarant">food</option>
+                    {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
                 </select>
                 </div>
                 <div class="form-group">
@@ -87,15 +111,15 @@
                 </div>
                 <div class="form-group">
                 <label for="latitude">Latitude:</label>
-                <input type="text" name="latitude" id="latitude" class="form-control">
+                <input type="text" name="latitude" id="latitude" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                 <label for="longitude">Longitude:</label>
-                <input type="text" name="longitude" id="longitude" class="form-control">
+                <input type="text" name="longitude" id="longitude" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea name="description" id="description" cols="30" rows="10" placeholder="Short of description of the nature of business" class="form-control"></textarea>
+                <textarea name="description" id="description" cols="30" rows="4" placeholder="Short of description of the nature of business" class="form-control"></textarea>
                 </div>
                 <input type="submit" value="Submit" class="btn btn-primary">
             </form>

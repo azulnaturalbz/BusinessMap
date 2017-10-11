@@ -9,7 +9,8 @@ import json
 import string
 app = Flask(__name__)
 DB = DBHelper()
-categories = ['retail','restuarant','bar','fashion-beauty','hardware','autoparts','banks','technology','telecom','pharmacy']
+categories = ['retail','restuarants','bars','fashion-beauty','hardware','autoparts','banks','technology',
+              'telecom', 'pharmacy']
 
 
 @app.route('/')
@@ -22,7 +23,8 @@ def home(error_message=None):
     except Exception as e:
         print(e)
         data = None
-    return render_template("home.html", data=data, businesses=businesses, categories=categories,error_message=error_message)
+    return render_template("home.html", data=data, businesses=businesses, categories=categories,
+                           error_message=error_message)
 
 
 @app.route('/add', methods=['POST'])

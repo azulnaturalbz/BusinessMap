@@ -51,8 +51,11 @@ def submitbusiness():
         date=format_date(request.form.get('date'))
         if not date:
             return home("Invalid date please use correct format")
-        latitude = float(request.form.get("latitude"))
-        longitude = float(request.form.get("longitude"))
+        try:
+            latitude = float(request.form.get("latitude"))
+            longitude = float(request.form.get("longitude"))
+        except ValueError:
+            return home()
         description = html.escape(request.form.get('description'))
         #description = sanitized_string(request.form.get('description'))
         DB.add_business(bizname, bizaddr, usrtel, email, homepage, category, date, latitude, longitude, description)
